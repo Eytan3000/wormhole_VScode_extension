@@ -1,7 +1,8 @@
 {
   "name": "wormhole",
-  "displayName": "wormhole",
-  "description": "",
+  "displayName": "Wormhole",
+  "publisher": "EytanKrief",
+  "description": "Effortlessly save and navigate to specific locations in your codebase. Save your current position with a keystroke and jump back to it later, even across multiple files.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.88.0"
@@ -33,7 +34,7 @@
         "savedFileInfo": {
           "type": "object",
           "default": {},
-          "description": "The savedFileInfo to save"  
+          "description": "The savedFileInfo to save"
         }
       }
     },
