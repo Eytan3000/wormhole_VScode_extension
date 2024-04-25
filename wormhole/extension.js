@@ -12,37 +12,35 @@ async function saveCurrentLine() {
       filePath: currentFilePath,
       line: currentPosition,
     };
-    console.log('File info:', fileInfo);
-
-    // // Update the configuration
-    // await vscode.workspace
-    //   .getConfiguration()
-    //   .update('savedLine', currentPosition, vscode.ConfigurationTarget.Global);
 
     // Update the configuration
     await vscode.workspace
       .getConfiguration()
       .update('savedFileInfo', fileInfo, vscode.ConfigurationTarget.Global);
 
+    // vscode.window.showInformationMessage(
+    //   `Current Position saved!`
+    // );
 
-	  const savedPos = vscode.workspace.getConfiguration().get('savedFileInfo', -1); // Default to -1 if the key is not found
-	  console.log('saved filePath:', savedPos.filePath);
-	  console.log('saved line:', savedPos.line);
-	  
-    vscode.window.showInformationMessage(
-      `Current Position saved!`
-    );
   }
 }
 
 // Function to go to the saved line
-function goToSavedLine() {
-  const savedLine = vscode.workspace.getConfiguration().get('savedLine', -1); // Default to -1 if the key is not found
+async function goToSavedLine() {
+  const savedFileInfo = vscode.workspace
+    .getConfiguration()
+    .get('savedFileInfo');
 
-  console.log('savedLine: ', savedLine);
+  if (savedFileInfo) {
+    const savedFilePath = savedFileInfo.filePath;
+    const savedLine = savedFileInfo.line;
+    console.log('Saved file info:', savedFileInfo);
 
-  if (savedLine !== -1) {
-    const editor = vscode.window.activeTextEditor;
+    // Open the saved file
+    const document = await vscode.workspace.openTextDocument(savedFilePath);
+    const editor = await vscode.window.showTextDocument(document);
+
+    // Go to the saved line
     if (editor) {
       const newPosition = new vscode.Position(savedLine, 0);
       const newSelection = new vscode.Selection(newPosition, newPosition);
