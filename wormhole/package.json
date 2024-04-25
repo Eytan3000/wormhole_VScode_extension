@@ -3,7 +3,7 @@
   "displayName": "Wormhole",
   "publisher": "EytanKrief",
   "description": "Effortlessly save and navigate to specific locations in your codebase. Save your current position with a keystroke and jump back to it later, even across multiple files.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository":"https://github.com/Eytan3000/wormhole_VScode_extension",
   "icon": "assets/wormhole-img.png",
   "engines": {
