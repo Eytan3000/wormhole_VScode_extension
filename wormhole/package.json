@@ -12,14 +12,43 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "wormhole.helloWorld",
-      "title": "Hello World"
+    "commands": [
+      {
+        "command": "wormhole.saveCurrentLine",
+        "title": "Save Current Line1"
+      },
+      {
+        "command": "wormhole.goToSavedLine",
+        "title": "Go to Saved Line"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "savedLine": {
+          "type": "number",
+          "default": -1,
+          "description": "The line number to save"
+        },
+        "savedFileInfo": {
+          "type": "object",
+          "default": {},
+          "description": "The savedFileInfo to save"  
+        }
+      }
     },
-    {
-      "command": "wormhole.helloWorld1",
-      "title": "Hello World1"
-    }]
+    "keybindings": [
+      {
+        "command": "wormhole.saveCurrentLine",
+        "key": "ctrl+shift+s",
+        "mac": "ctrl+shift+s"
+      },
+      {
+        "command": "wormhole.goToSavedLine",
+        "key": "ctrl+shift+d",
+        "mac": "ctrl+shift+d"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
